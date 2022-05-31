@@ -358,6 +358,7 @@ class S3Grabber(object):
                     out.write(buff)
                     buff = response.read(BUFFER_SIZE)
             except urllib2.HTTPError, e:
+                print "Got error, " + str(e.code) + ": " + e.reason + " - sleeping for: " + str(delay) + " seconds"
                 if retries > 0:
                     time.sleep(delay)
                     delay *= self.backoff
